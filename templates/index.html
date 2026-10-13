@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% block title %}Image to Word & Excel Converter — Abdur Rauf{% endblock %}
+{% block content %}
+<!-- Hero + converter -->
+    <header class="hero">
+        <div class="container">
+            <div class="row g-5 align-items-start">
+                <div class="col-lg-6">
+                    <h1>Turn a photo of a document into an editable Word or Excel file</h1>
+                    <p class="lead">Upload a photo or scan. Tables become real tables, text stays editable, and signatures, stamps and logos are placed back where they were.</p>
+                    <ul class="formats">
+                        <li><span class="tag t-i">IMG</span> PNG, JPG, BMP, TIF, WEBP</li>
+                        <li><span class="tag t-x">XLSX</span> Excel</li>
+                        <li><span class="tag t-d">DOCX</span> Word</li>
+                    </ul>
+                    <ul class="facts">
+                        <li>No table in the image? You get plain text, with no empty cells.</li>
+                        <li>Original colors can be matched in the output file.</li>
+                        <li>Free to use, no account needed.</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="panel" id="converter">
+                        <h2>Convert your image</h2>
+                        <div id="drop" role="button" tabindex="0" aria-label="Choose an image to convert">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4m0 0L7 9m5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg><br>
+                            <strong>Click or drop an image here</strong><br>
+                            <small>PNG, JPG, BMP, TIF, WEBP &mdash; max 10 MB</small>
+                        </div>
+                        <input id="file" type="file" accept="image/*" hidden>
+                        <p id="fname"></p>
+                        <img id="preview" alt="Selected image preview">
+
+                        <div class="opts">
+                            <label><input type="checkbox" id="excel" checked> <span class="tag t-x">XLSX</span> Excel file</label>
+                            <label><input type="checkbox" id="word" checked> <span class="tag t-d">DOCX</span> Word file</label>
+                            <label><input type="checkbox" id="colors" checked> Match original colors</label>
+                            <label><input type="checkbox" id="objects" checked> Extract signatures / stamps / logos</label>
+                        </div>
+
+                        <button id="go" type="button" data-url="{{ url_for('image_office.image_to_word_excel_convert') }}">Convert</button>
+                        <div id="msg" role="status"></div>
+                        <p class="privacy">Your image is deleted from the server immediately after conversion.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- How it works -->
+    <section class="section alt" id="how">
+        <div class="container">
+            <h2 class="title">How it works</h2>
+            <p class="sub">Three steps, usually 10&ndash;30 seconds from upload to download.</p>
+            <ol class="steps">
+                <li>
+                    <h3>Upload your image</h3>
+                    <p>Drop a photo or scan into the box. Straight, well-lit images give the best result.</p>
+                </li>
+                <li>
+                    <h3>Choose the output</h3>
+                    <p>Pick Excel, Word, or both, and decide whether to match colors and extract stamps and logos.</p>
+                </li>
+                <li>
+                    <h3>Download and check</h3>
+                    <p>Your file downloads automatically. Choosing both formats gives you one .zip with the two files.</p>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- What it handles -->
+    <section class="section" id="features">
+        <div class="container">
+            <h2 class="title">What the converter handles</h2>
+            <p class="sub">Built for scanned forms, tables, reports and letters.</p>
+            <div class="features">
+                <div class="feature">
+                    <div class="ico x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg></div>
+                    <div><h3>Real tables</h3><p>Rows and columns become Excel cells and Word table cells, not a picture of a table.</p></div>
+                </div>
+                <div class="feature">
+                    <div class="ico d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14M5 10h14M5 15h9"/></svg></div>
+                    <div><h3>Editable text</h3><p>Paragraphs are read with OCR and placed in the Word file so you can edit them directly.</p></div>
+                </div>
+                <div class="feature">
+                    <div class="ico i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M8 12.5 11 15l5-6"/></svg></div>
+                    <div><h3>Signatures, stamps, logos</h3><p>These are cut out of the image and placed back in the same position in the output file.</p></div>
+                </div>
+                <div class="feature">
+                    <div class="ico p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.5 0 2-1 2-2s-.5-1.5-.5-2.5S15 15 16 15h2a3 3 0 0 0 3-3c0-5-4-9-9-9Z"/></svg></div>
+                    <div><h3>Original colors</h3><p>Cell fills and text colors can be matched to the source image.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips -->
+    <section class="section alt" id="tips">
+        <div class="container">
+            <div class="tips">
+                <h3>For the best result</h3>
+                <ul>
+                    <li>Take the photo straight on, with even light and no shadows across the page.</li>
+                    <li>Use a sharp image. Blurry text and handwriting may be read wrongly, so always check the result.</li>
+                    <li>Keep each image under 10 MB. Convert one page at a time.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+        <div class="container">
+            <h2 class="title">Questions</h2>
+            <p class="sub">Short answers about files, accuracy and privacy.</p>
+            <div class="faq">
+                <details>
+                    <summary>Which image formats can I upload?</summary>
+                    <p>PNG, JPG, JPEG, BMP, TIF, TIFF and WEBP, up to 10 MB each.</p>
+                </details>
+                <details>
+                    <summary>Why did I get a .zip file?</summary>
+                    <p>You chose both Excel and Word. They are packed into one .zip so you can download them together. Choose only one format to get that file directly.</p>
+                </details>
+                <details>
+                    <summary>Is the text always correct?</summary>
+                    <p>No. OCR can misread blurry text, small print and handwriting. Check numbers and names before you use the file.</p>
+                </details>
+                <details>
+                    <summary>Is my image stored?</summary>
+                    <p>No. The image is deleted from the server as soon as the conversion finishes.</p>
+                </details>
+                <details>
+                    <summary>Why does it say the converter is busy?</summary>
+                    <p>The converter handles one image at a time. Wait a few seconds and press Convert again.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section alt cta">
+        <div class="container">
+            <h2 class="title">Ready to convert?</h2>
+            <p class="sub">Upload your image and get an editable file in under a minute.</p>
+            <a class="btn-go" href="{{ url_for('image_office.home') }}#converter">Go to the converter</a>
+        </div>
+    </section>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/converter.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Page not found — Image to Office{% endblock %}
+{% block content %}
+<main class="container notfound">
+    <div class="code">404</div>
+    <h1 class="mt-3" style="font-family:'Space Grotesk',sans-serif;color:var(--text-100);">Page not found</h1>
+    <p>The page you opened does not exist. Go back to the converter.</p>
+    <a class="btn-go" style="display:inline-block;padding:.8rem 1.8rem;background:var(--orange-500);color:#fff;border-radius:8px;font-weight:600;" href="{{ url_for('image_office.home') }}">Open the converter</a>
+</main>
+{% endblock %}

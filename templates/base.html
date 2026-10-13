@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Image to Word & Excel Converter — Abdur Rauf{% endblock %}</title>
+    <meta name="description" content="{% block description %}Convert a photo or scan of a document into an editable Word or Excel file. Tables stay tables, text stays editable, signatures and stamps are placed back.{% endblock %}">
+    <meta name="theme-color" content="#080c16">
+    <meta property="og:title" content="Image to Word & Excel Converter">
+    <meta property="og:description" content="Turn a photo of a document into an editable Word or Excel file.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23f0632f'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='14' font-weight='700' fill='white' text-anchor='middle'%3EIO%3C/text%3E%3C/svg%3E">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('image_office.home') }}"><span class="mark">IO</span> Image to Office</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link {% if request.endpoint == 'image_office.home' %}active{% endif %}" href="{{ url_for('image_office.home') }}">Converter</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('image_office.home') }}#how">How it works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('image_office.home') }}#faq">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.endpoint == 'about' %}active{% endif %}" href="{{ url_for('about') }}">About</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.endpoint == 'privacy' %}active{% endif %}" href="{{ url_for('privacy') }}">Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+        <div class="container">
+            <div class="foot-grid">
+                <div>
+                    <h4>Abdur Rauf</h4>
+                    <p>Engineering tools and converters built for everyday work.</p>
+                </div>
+                <div>
+                    <h4>Site</h4>
+                    <ul>
+                        <li><a href="{{ url_for('image_office.home') }}">Converter</a></li>
+                        <li><a href="{{ url_for('about') }}">About</a></li>
+                        <li><a href="{{ url_for('privacy') }}">Privacy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Learn more</h4>
+                    <ul>
+                        <li><a href="{{ url_for('image_office.home') }}#how">How it works</a></li>
+                        <li><a href="{{ url_for('image_office.home') }}#features">What it handles</a></li>
+                        <li><a href="{{ url_for('image_office.home') }}#faq">Questions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <span>&copy; {{ year }} Abdur Rauf</span>
+                <span>Converter / Image to Word &amp; Excel</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

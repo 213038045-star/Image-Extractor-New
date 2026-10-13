@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Privacy — Image to Office{% endblock %}
+{% block content %}
+<main class="container page">
+    <h1>Privacy</h1>
+    <p>Your documents can contain private information, so this tool keeps as little as possible.</p>
+
+    <h2>Your images</h2>
+    <p>The image you upload is saved in a temporary folder only while it is being converted. It is deleted from the server as soon as the conversion finishes, whether it succeeds or fails.</p>
+
+    <h2>Your results</h2>
+    <p>The Word or Excel file is sent straight to your browser as a download. The server does not keep a copy.</p>
+
+    <h2>Accounts and tracking</h2>
+    <p>There are no accounts and no sign-up. This site does not add its own tracking. Fonts and Bootstrap are loaded from public CDNs (Google Fonts and jsDelivr).</p>
+
+    <h2>Good practice</h2>
+    <p>Avoid uploading documents with passwords, bank details or other highly sensitive data.</p>
+</main>
+{% endblock %}

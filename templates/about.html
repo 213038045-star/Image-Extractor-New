@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}About — Image to Office{% endblock %}
+{% block content %}
+<main class="container page">
+    <h1>About this tool</h1>
+    <p>Image to Office turns a photo or scan of a document into an editable Word or Excel file. It was built by Abdur Rauf to save the time spent retyping tables and forms by hand.</p>
+
+    <h2>What it does</h2>
+    <ul>
+        <li>Reads the text in your image with OCR.</li>
+        <li>Detects tables and rebuilds them as real Excel cells and Word tables.</li>
+        <li>Cuts out signatures, stamps and logos and puts them back in place.</li>
+        <li>Gives you plain text when the image has no table.</li>
+    </ul>
+
+    <h2>Limits</h2>
+    <p>Handwriting, blurry photos and very small print may be read wrongly. Always check numbers and names in the result. Each image can be up to 10 MB.</p>
+
+    <h2>Contact</h2>
+    <p>Found a problem or have an idea? Add your email or contact link here in <code>templates/about.html</code>.</p>
+</main>
+{% endblock %}

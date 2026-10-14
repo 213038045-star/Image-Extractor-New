@@ -15,8 +15,13 @@ from werkzeug.utils import secure_filename
 
 try:
     from image_to_office import convert
-except ImportError:          # keep the whole site running if the converter is missing
+except Exception as _e:      # keep the whole site running if the converter is missing
+    import traceback
+    traceback.print_exc()    # shows the real cause in Render's Logs
+    IMPORT_ERROR = f"{type(_e).__name__}: {_e}"
     convert = None
+
+IMPORT_ERROR = globals().get("IMPORT_ERROR", "")
 
 image_office_bp = Blueprint("image_office", __name__)
 
@@ -41,7 +46,8 @@ def home():
 @image_office_bp.route("/convert", methods=["POST"])
 def image_to_word_excel_convert():
     if convert is None:
-        return jsonify(error="Converter is not installed on the server."), 503
+        return jsonify(error="Converter is not installed on the server. "
+                             f"Reason: {IMPORT_ERROR}"), 503
 
     f = request.files.get("file")
     if f is None or not f.filename:

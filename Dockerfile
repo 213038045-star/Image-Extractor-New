@@ -2,7 +2,9 @@ FROM python:3.11-slim
 
 # Fonts (used when rebuilding text) + libs needed by OpenCV / ONNX runtime
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        fonts-liberation fonts-dejavu-core libglib2.0-0 libgomp1 \
+        fonts-liberation fonts-dejavu-core \
+        libglib2.0-0 libgomp1 libgl1 \
+        libxcb1 libsm6 libxext6 libxrender1 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
